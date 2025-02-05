@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"gitfame/configs"
+	"gitfame/config"
 	"gitfame/internal/app"
 	"log"
 	"os"
@@ -10,12 +10,12 @@ import (
 )
 
 func main() {
-	config, err := configs.ParseConfig()
+	cfg, err := config.ParseConfig()
 	if err != nil {
-		log.Fatalf("failed to parse config: %v", err)
+		log.Fatalf("failed to parse cfg: %v", err)
 	}
 
-	collector := app.NewStatsCollector(config)
+	collector := app.NewStatsCollector(cfg)
 
 	processWithLoading(func() {
 		if err = collector.CollectStats(); err != nil {

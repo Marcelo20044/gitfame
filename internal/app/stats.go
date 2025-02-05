@@ -4,7 +4,7 @@ import (
 	"encoding/csv"
 	"encoding/json"
 	"fmt"
-	"gitfame/configs"
+	"gitfame/config"
 	"golang.org/x/sync/errgroup"
 	"os"
 	"os/exec"
@@ -30,13 +30,13 @@ type Stats struct {
 }
 
 type StatsCollector struct {
-	configs.Config
+	config.Config
 	Stats    []Stats
 	statsMap map[string]*Stats
 	mu       sync.Mutex
 }
 
-func NewStatsCollector(config configs.Config) *StatsCollector {
+func NewStatsCollector(config config.Config) *StatsCollector {
 	return &StatsCollector{
 		Config:   config,
 		statsMap: make(map[string]*Stats),
